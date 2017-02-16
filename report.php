@@ -3,15 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Aliens Abducted Me - Report an Abduction</title>
+  <title>Пришельцы похитили меня</title>
 </head>
 <body>
-  <h2>Aliens Abducted Me - Report an Abduction</h2>
+  <h2>Пришельцы похитили меня - Сообщить о похищении</h2>
 
 <?php
   $first_name = $_POST['firstname'];
   $last_name = $_POST['lastname'];
-  $name = $_POST['firstname'] . ' ' . $_POST['lastname'];
   $when_it_happened = $_POST['whenithappened'];
   $how_long = $_POST['howlong'];
   $how_many = $_POST['howmany'];
@@ -32,12 +31,31 @@
   $dbc=mysqli_connect('localhost', 'root', '', 'aliendatabase') 
     or die ('Ошибка соединения с MySQL-сервером');
 
-    $query = "INSERT INTO `aliens_abduction` ('first_name', 'last_name',`last_name`, `when_it_happened`, `how_long`, `how_many`, `alien_description`, `what_they_did`, `fang_spotted`, `other`, `email`) VALUES ('Nurs', 'Mussabayev', 'last summer', '12', '2', 'Big and green', 'Nothing', 'No', 'No', 'nursalga@mail.ru') ";
+    $query = "INSERT INTO `aliens_abduction` (`first_name`, `last_name`, `when_it_happened`, `how_long`, `how_many`, `alien_description`, `what_they_did`, `fang_spotted`, `other`, `email`) VALUES ('$first_name', '$last_name', '$when_it_happened', '$how_long', '$how_many', '$alien_description', '$what_they_did', '$fang_spotted', '$other', 
+    '$email') ";
 
     $result = mysqli_query($dbc, $query)
     or die ('Ошибка при выполнении запроса к базе данных!');
 
     mysqli_close($dbc);
+
+echo 'Спасибо за заполнение формы'. '<br />';
+echo 'Вы были похищены ' . $when_it_happened;
+echo  ', и отсутствовали в течение ' . $how_long . '<br />';
+echo  'Количество космических пришельцев: ' . $how_many . '<br />';
+echo  'Опишите их: ' . $alien_description . '<br />';
+echo  'Что они делали? ' . $what_they_did . '<br />';
+echo   'Видели ли вы мою собаку Фэнга? ' . $fang_spotted . '<br />';
+echo  'Дополнительная информация: ' . $other . '<br />';
+echo  'Ваш адрес электронной почты ' . $еmаil;
+
+
+
+
+
+
+
+
 ?>
 
 </body>
